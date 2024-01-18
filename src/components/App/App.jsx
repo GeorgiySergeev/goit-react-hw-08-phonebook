@@ -1,54 +1,68 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import { useEffect, lazy } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { Conatiner, MainWrapper, Note } from './App.styled';
-import { Header } from 'components/Header/Header';
-import { ContactList } from 'components/ContactList/ContactList';
-import { Filter } from 'components/Filter/Filter';
-import { ContactForm } from 'components/ContactForm/ContactForm';
-import { LoadingSpinner } from 'components/Loader/Loader';
-import { ErrorPage } from 'components/ErrorPage/ErrorPage';
+import Layout from 'components/Layout/Layout';
+import { ErrorPage } from 'pages/ErrorPage';
+import { PrivatRoute, PrivatRouteAuth } from 'components/Route/PrivatRoute';
 
-import {
-  selectContacts,
-  selectLoading,
-  selectError,
-} from '../../redux/selectors';
+import { current } from '../../redux/auth/auth-operations';
 
-import { fetchContacts } from '../../redux/operations';
+const HomePage = lazy(() => import('../../pages/Home'));
+const RegisterPage = lazy(() => import('../../pages/Register'));
+const LoginPage = lazy(() => import('../../pages/Login'));
+const ContactsPage = lazy(() => import('../../pages/Contacts'));
+// const ContactsDetailsPage = lazy(() => import('../../pages/ContactsDetails'));
 
-export function App() {
-  const contacts = useSelector(selectContacts);
+export const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoading);
-  const error = useSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(current());
   }, [dispatch]);
 
   return (
     <>
-      {isLoading && <LoadingSpinner />}
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
 
-      {error ? (
-        <ErrorPage text={error} />
-      ) : (
-        <Conatiner>
-          <Header>
-            <Filter />
-          </Header>
-          <MainWrapper className={contacts.length === 0 ? 'empty' : ''}>
-            <ContactForm></ContactForm>
+          <Route
+            path="/contacts"
+            element={
+              <PrivatRoute>
+                <ContactsPage />
+              </PrivatRoute>
+            }
+          />
 
-            {contacts.length === 0 ? (
-              <Note>Your phonebook is empty! Add a contact.</Note>
-            ) : (
-              <ContactList />
-            )}
-          </MainWrapper>
-        </Conatiner>
-      )}
+          {/* <Route
+            path="/contacts/:id"
+            element={
+              <PrivatRoute>
+                <ContactsDetailsPage />
+              </PrivatRoute>
+            }
+          /> */}
+          <Route
+            path="/login"
+            element={
+              <PrivatRouteAuth>
+                <LoginPage />
+              </PrivatRouteAuth>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <PrivatRouteAuth>
+                <RegisterPage />
+              </PrivatRouteAuth>
+            }
+          />
+          <Route path="*" element={<ErrorPage />} />
+        </Route>
+      </Routes>
     </>
   );
-}
+};

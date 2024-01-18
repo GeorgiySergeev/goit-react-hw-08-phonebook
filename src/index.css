@@ -1,13 +1,33 @@
-@import-normalize; /* bring in normalize.css styles */
+/* @import-normalize; */
+/* bring in normalize.css styles */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   color: rgb(47, 46, 45);
+  /* height: 100vh; */
 
-  margin: 0;
-  font-family: 'DM Sans', sans-serif;
+  /* overflow: hidden; */
+
+  /* font-family: 'DM Sans', sans-serif; */
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(216, 216, 216);
+  background-color: rgb(139, 135, 135);
+  background-image: url(./assets/thumb.jpg);
+  background-size: cover;
+  background-position: center;
+  /* height: 100vh; */
+
+  /* display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0; */
 }
 
 code {
@@ -43,6 +63,10 @@ a {
 
 button {
   cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-weight: inherit;
+  font-size: inherit;
 }
 
 img {

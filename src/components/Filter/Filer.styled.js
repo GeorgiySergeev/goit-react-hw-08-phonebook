@@ -7,7 +7,7 @@ export const FilterWrapper = styled.div`
 export const Input = styled.input`
   border-radius: 10px;
   border: none;
-  height: 35px;
+  height: 30px;
   padding: 0px 15px 0px 25px;
   margin-bottom: 20px;
 `;
@@ -17,4 +17,5 @@ export const FilterIcon = styled(CiFilter)`
   top: 11px;
   left: 4px;
   width: 20px;
+  color: black;
 `;

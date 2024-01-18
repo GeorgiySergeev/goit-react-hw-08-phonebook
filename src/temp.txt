@@ -1,0 +1,226 @@
+import css from './ContactFormModal.module.css';
+import { IoCloseSharp } from 'react-icons/io5';
+
+const ContactFormModal = ({ closeModal }) => {
+  const onChange = () => {};
+  return (
+    <section className={`${css.container}`}>
+      <button className={css['close-button']} onClick={closeModal}>
+        <IoCloseSharp />
+      </button>
+      <header>New Contact</header>
+      <form className={`${css.form}`} action="#">
+        <div className={css['input-box']}>
+          <label>Full Name</label>
+          <input
+            required=""
+            placeholder="Enter full name"
+            type="text"
+            onChange={onChange}
+          />
+        </div>
+        <div className={css['column']}>
+          <div className={css['input-box']}>
+            <label>Phone Number</label>
+            <input
+              required=""
+              placeholder="Enter phone number"
+              type="telephone"
+              onChange={onChange}
+            />
+          </div>
+          {/* <div className={css['input-box']}>
+            <label>Birth Date</label>
+            <input required="" placeholder="Enter birth date" type="date" />
+          </div> */}
+        </div>
+        {/* <div className={css['gender-box']}>
+          <label>Gender</label>
+          <div className={css['gender-option']}>
+            <div className={css['gender']}>
+              <input
+                checked=""
+                name="gender"
+                id="check-male"
+                type="radio"
+                onChange={onChange}
+              />
+              <label htmlFor="check-male">Male</label>
+            </div>
+            <div className={css['gender']}>
+              <input
+                name="gender"
+                id="check-female"
+                type="radio"
+                onChange={onChange}
+              />
+              <label htmlFor="check-female">Female</label>
+            </div>
+            <div className={css['gender']}>
+              <input
+                name="gender"
+                id="check-other"
+                type="radio"
+                onChange={onChange}
+              />
+              <label htmlFor="check-other">Prefer not to say</label>
+            </div>
+          </div>
+        </div> */}
+        <div className={css['input-box address']} style={{ marginTop: 10 }}>
+          <label>Category</label>
+          {/* <input required="" placeholder="Enter street address" type="text" /> */}
+          <div className={css['column']}>
+            <div className={css['select-box']}>
+              <select>
+                <option hidden="">Select category</option>
+                <option>Family</option>
+                <option>Friend</option>
+                <option>Collegie</option>
+                <option>Other</option>
+              </select>
+            </div>
+            {/* <input
+              required=""
+              placeholder="Enter your city"
+              type="text"
+              onChange={onChange}
+            /> */}
+          </div>
+        </div>
+        <button>Submit</button>
+      </form>
+    </section>
+  );
+};
+
+export default ContactFormModal;
+=======================================================
+
+
+
+import React, { useState, useRef } from 'react';
+import css from './ContactFormModal.module.css';
+import { IoCloseSharp } from 'react-icons/io5';
+import { selectContacts } from '../../redux/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from '../../redux/contacts/contacts-operations';
+import { nanoid } from 'nanoid';
+import InputMask from 'react-input-mask';
+
+const ContactFormModal = ({ closeModal }) => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
+  const inputMaskRef = useRef();
+
+  const [errors, setErrors] = useState({
+    name: '',
+    number: '',
+  });
+
+  const [formData, setFormData] = useState({
+    name: '',
+    number: '',
+    category: '',
+    id: '',
+  });
+
+  const validateName = name => {
+    if (name.trim().length < 2) {
+      return 'Name should be at least 2 characters long';
+    }
+    return '';
+  };
+
+  const validateNumber = number => {
+    const regex = /^\+38 \(\d{7}\)$/;
+
+    if (!regex.test(number)) {
+      return 'Phone number should be in the format +38 (1234567)';
+    }
+
+    return '';
+  };
+
+  const onChange = e => {
+    const { name, value } = e.target;
+
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value,
+      id: nanoid(),
+    }));
+
+    if (name === 'name') {
+      setErrors(prevErrors => ({ ...prevErrors, name: validateName(value) }));
+    } else if (name === 'number') {
+      setErrors(prevErrors => ({
+        ...prevErrors,
+        number: validateNumber(value),
+      }));
+    }
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+
+    const nameError = validateName(formData.name);
+    const numberError = validateNumber(formData.number);
+
+    if (nameError || numberError) {
+      setErrors({ name: nameError, number: numberError });
+    } else {
+      dispatch(addContact(formData));
+      setFormData({
+        name: '',
+        number: '',
+        category: '',
+        id: '',
+      });
+      closeModal();
+    }
+  };
+
+  return (
+    <section className={`${css.container}`}>
+      <button className={css['close-button']} onClick={closeModal}>
+        <IoCloseSharp />
+      </button>
+      <header>New Contact</header>
+      <form className={`${css.form}`} onSubmit={onSubmit}>
+        <div className={css['input-box']}>
+          <label>Full Name</label>
+          <input
+            required=""
+            placeholder="Enter full name"
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={onChange}
+          />
+          {errors.name && <span>{errors.name}</span>}
+        </div>
+        <div className={css['column']}>
+          <div className={css['input-box']}>
+            <label>Phone Number</label>
+            <InputMask
+              ref={inputMaskRef}
+              mask="+38 (099) 999 99 99"
+              placeholder="+38 (0__) ___ __ __"
+              maskChar="_"
+              value={formData.number}
+              onChange={e =>
+                onChange({ target: { name: 'number', value: e.target.value } })
+              }
+            />
+            {errors.number && <span>{errors.number}</span>}
+          </div>
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+  );
+};
+
+export default ContactFormModal;

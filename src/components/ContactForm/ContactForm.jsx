@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { nanoid } from 'nanoid';
 
-import { addContact } from '../../redux/operations';
+import { addContact } from '../../redux/contacts/contacts-operations';
 import { selectContacts } from '../../redux/selectors';
 
 import { Form, Button, Input } from './ContactForm.styled';

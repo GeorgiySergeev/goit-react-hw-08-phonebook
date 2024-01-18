@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-import * as api from '../redux/operations';
+import * as api from '../contacts/contacts-operations';
 
 const appState = {
   contacts: [],
@@ -45,7 +44,14 @@ const contactsSlise = createSlice({
         state.contacts.splice(index, 1);
         state.isLoading = false;
       })
-      .addCase(api.deleteContact.rejected, handleRejected);
+      .addCase(api.deleteContact.rejected, handleRejected)
+      .addCase(api.editContact.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.contacts = state.contacts.map(contact => {
+          if (contact.id === action.payload.id) return action.payload;
+          return contact;
+        });
+      });
   },
 });
 
