@@ -68,3 +68,9 @@ export const InfoItem = styled.li`
 `;
 
 export const EditLink = styled.p``;
+
+export const Span = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;

@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
 const Title = styled.h2`
-  position: absolute;
-  bottom: -250px;
-  right: 0px;
+  /* position: absolute; */
+  /* bottom: -250px; */
+  /* left: 380px; */
 
   font-size: 32px;
   text-align: right;
@@ -11,8 +11,10 @@ const Title = styled.h2`
   z-index: 1;
 
   @media screen and (min-width: 1280px) {
+    position: absolute;
     width: 868px;
     font-size: 62px;
+    left: 380px;
   }
 `;
 

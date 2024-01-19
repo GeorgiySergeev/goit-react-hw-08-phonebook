@@ -5,9 +5,8 @@ import { Conatiner, MainWrapper, Note } from '../components/App/App.styled';
 import { Header } from 'components/ContactHeader/ContactHeader';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
-import { LoadingSpinner } from 'components/Loader/Loader';
+import { Loader } from 'components/Loader/Loader';
 import AddContactIcon from 'components/AddContactIcon/AddContactIcon';
-import Button from '../components/Button/Button';
 import AddContactModal from 'components/AddContactModal/AddContactModal';
 import Tooltip from 'components/ToolTip/ToolTip';
 
@@ -38,7 +37,7 @@ const Contacts = () => {
 
   return (
     <>
-      {isLoading && <LoadingSpinner />}
+      {isLoading && <Loader />}
 
       {!isLoggedin ? (
         <h1>Please Log In</h1>
@@ -54,8 +53,8 @@ const Contacts = () => {
           <MainWrapper className={contacts.length === 0 ? 'empty' : ''}>
             {contacts.length === 0 ? (
               <Note>
-                Your phonebook is empty!{' '}
-                <Button eventHandler={modalHandler} text="Add contact" />
+                Your phonebook is empty! Add contact
+                <AddContactIcon eventHandler={modalHandler} />
               </Note>
             ) : (
               <ContactList />

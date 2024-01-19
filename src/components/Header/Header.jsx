@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { HeaderContainer, AuthNav } from './Header.styled';
-import Button from '../Button/Button';
+
 import UserMenu from 'components/UserMenu/UserMenu';
-// import { useState } from 'react';
+import { CiLogin } from 'react-icons/ci';
+
 import {
   selectIsLogedIn,
   selectUserName,
@@ -13,8 +14,6 @@ import {
 export const Header = ({ text, span }) => {
   const isLogin = useSelector(selectIsLogedIn);
   const userName = useSelector(selectUserName);
-
-  const onClick = () => {};
 
   return (
     <HeaderContainer>
@@ -27,9 +26,10 @@ export const Header = ({ text, span }) => {
         <UserMenu user={userName} />
       ) : (
         <AuthNav>
-          <Link to="/login">
-            {/* <h3 style={{ color: '#E05160' }}>Log in</h3> */}
-            <Button eventHandler={onClick} text="Log in" />
+          <Link to="/login" style={{ display: 'flex', alignItems: 'center' }}>
+            <h3 style={{ color: '#E05160' }}>Log in</h3>
+            <CiLogin style={{ color: '#E05160' }}></CiLogin>
+            {/* <Button eventHandler={onClick} text="Log in" /> */}
           </Link>
           {/* <Link to="/register">Register</Link> */}
         </AuthNav>

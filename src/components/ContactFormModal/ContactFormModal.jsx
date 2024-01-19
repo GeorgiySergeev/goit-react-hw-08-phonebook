@@ -8,7 +8,6 @@ import { nanoid } from 'nanoid';
 
 const ContactFormModal = ({ closeModal }) => {
   const dispatch = useDispatch();
-  // const contacts = useSelector(selectContacts);
 
   const [errors, setErrors] = useState({
     name: '',
@@ -55,7 +54,7 @@ const ContactFormModal = ({ closeModal }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log(formData);
+
     dispatch(addContact(formData));
 
     reset();
@@ -66,7 +65,6 @@ const ContactFormModal = ({ closeModal }) => {
     setFormData({
       name: '',
       number: '',
-      category: '',
     });
   };
 

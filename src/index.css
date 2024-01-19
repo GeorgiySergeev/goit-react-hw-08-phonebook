@@ -1,6 +1,5 @@
 /* @import-normalize; */
 /* bring in normalize.css styles */
-
 html,
 body {
   height: 100%;
@@ -14,7 +13,6 @@ body {
 
   /* overflow: hidden; */
 
-  /* font-family: 'DM Sans', sans-serif; */
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -22,6 +20,7 @@ body {
   background-image: url(./assets/thumb.jpg);
   background-size: cover;
   background-position: center;
+  /* background-repeat: no-repeat; */
   /* height: 100vh; */
 
   /* display: flex;
@@ -77,3 +76,5 @@ img {
 .empty {
   justify-content: start !important;
 }
+
+/*  */

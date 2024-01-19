@@ -3,7 +3,7 @@ import { AddIcon, Button, Container } from './AddContactIcon.styled';
 const AddContactIcon = ({ eventHandler }) => {
   return (
     <Container onClick={() => eventHandler()}>
-      <Button>
+      <Button style={{ marginBottom: -12 }}>
         <svg
           fill="none"
           viewBox="0 0 24 24"

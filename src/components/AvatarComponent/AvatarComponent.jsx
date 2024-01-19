@@ -21,7 +21,6 @@ const AvatarComponent = ({ isChecked, isExpanded, name }) => {
 
   return (
     <Avatar style={{ color: avatarColor, width: '50px', height: '50px' }}>
-      {/* Ваш контент */}
       <h1>{getFirstLetter(name)}</h1>
     </Avatar>
   );

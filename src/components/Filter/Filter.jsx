@@ -12,11 +12,7 @@ export const Filter = () => {
 
   return (
     <FilterWrapper>
-      <Input
-        type="text"
-        placeholder="Enter name..."
-        onChange={onFilterInputChange}
-      />
+      <Input type="text" placeholder="" onChange={onFilterInputChange} />
       <FilterIcon></FilterIcon>
     </FilterWrapper>
   );

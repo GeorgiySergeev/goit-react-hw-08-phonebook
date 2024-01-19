@@ -4,6 +4,10 @@ import { IoIosArrowForward } from 'react-icons/io';
 export const LinkContainer = styled.div`
   display: flex;
   align-items: end;
+  font-size: 30px;
+  @media screen and (min-width: 1280px) {
+    font-size: 62px;
+  }
 
   transition: transform 0.3s ease-in-out; // Изменено на 0.3s
   :hover {

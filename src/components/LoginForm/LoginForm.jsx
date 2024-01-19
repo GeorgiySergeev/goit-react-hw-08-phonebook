@@ -10,11 +10,16 @@ import css from '../LoginForm/Loginform.module.css';
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [pass, setPass] = useState('password');
 
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+
+  const showPassword = () => {
+    setPass(prev => (prev === 'password' ? 'text' : 'password'));
+  };
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -26,12 +31,11 @@ const LoginForm = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    console.log(formData);
     await dispatch(login(formData));
-    // В этой функции вы можете отправить данные куда-то, например, на сервер
-    console.log('Form Data:', formData);
+
     navigate('/contacts');
   };
+
   return (
     <div className={`${css.formContainer}`}>
       <form className={`${css.form}`} onSubmit={handleSubmit}>
@@ -63,7 +67,7 @@ const LoginForm = () => {
         <div className={`${css.inputContainer}`}>
           <input
             placeholder="Enter password"
-            type="password"
+            type={pass}
             name="password"
             value={formData.password}
             onChange={handleChange}
@@ -71,7 +75,8 @@ const LoginForm = () => {
 
           <span>
             <svg
-              stroke="currentColor"
+              onClick={showPassword}
+              stroke={pass === 'text' ? 'red' : 'currentColor'}
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

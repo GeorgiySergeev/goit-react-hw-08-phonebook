@@ -3,7 +3,7 @@ import { FaPlus } from 'react-icons/fa';
 
 export const AddIcon = styled(FaPlus)`
   position: absolute;
-  top: -15px;
+  top: -10px;
   right: -4px;
   width: 15px;
   cursor: pointer;
@@ -24,7 +24,7 @@ export const Container = styled.div`
   right: 19px;
   display: flex;
   align-items: center;
-  margin-left: 45px;
+  margin-left: 15px;
 `;
 export const Button = styled.button`
   /* width: 45px; */

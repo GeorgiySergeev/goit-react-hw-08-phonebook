@@ -1,7 +1,13 @@
+import { useEffect, useRef, useState } from 'react';
+
+import { MdOutlineWorkHistory } from 'react-icons/md';
 import { FaTrashAlt } from 'react-icons/fa';
-// import { CiUser } from 'react-icons/ci';
-// import { FaChevronDown } from 'react-icons/fa6';
+import { MdAlternateEmail } from 'react-icons/md';
+import { MdMapsHomeWork } from 'react-icons/md';
+import { BiCategory } from 'react-icons/bi';
 import { FaUserEdit } from 'react-icons/fa';
+
+import AvatarComponent from 'components/AvatarComponent/AvatarComponent';
 import css from './EditForm.module.css';
 
 import {
@@ -10,24 +16,24 @@ import {
   ListItemStyled,
   Name,
   Phone,
+  Span,
 } from './ContactItem.styled';
-import { useEffect, useRef, useState } from 'react';
-// import { Button } from 'components/AddContactIcon/AddContactIcon.styled';
-// import { Link } from 'react-router-dom';
-// import { getRandomColor } from 'helpers/random-color';
-import AvatarComponent from 'components/AvatarComponent/AvatarComponent';
-// import { useDispatch } from 'react-redux';
-// import { selectContacts } from '../../redux/contacts/contacts-selectors';
-// import {
-//   editContact,
-//   fetchContacts,
-// } from '../../redux/contacts/contacts-operations';
 
-export const ListItem = ({ id, name, number, handlerClick, handlerEdit }) => {
-  const [isChecked, setIsChecked] = useState(false);
+export const ListItem = ({
+  id,
+  name,
+  number,
+  handlerClick,
+  handlerEdit,
+  setContactIdsToDelete,
+  contactsIdsToDelete,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
-
-  // const dispatch = useDispatch();
+  const [formData, setFormData] = useState({
+    name,
+    number,
+    id,
+  });
   const editInfoRef = useRef();
 
   useEffect(() => {
@@ -43,31 +49,6 @@ export const ListItem = ({ id, name, number, handlerClick, handlerEdit }) => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-  // const [contact, setContact] = useState({});
-  // const [contact, setContact] = useState({});
-
-  const [formData, setFormData] = useState({
-    name,
-    number,
-    id,
-  });
-
-  const handleCheckboxChange = e => {
-    setIsChecked(prevChecked => !prevChecked);
-  };
-
-  const handleToggleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  // const onSubmit = e => {
-  //   e.preventDefault();
-  //   // console.log(formData);
-
-  //   dispatch(editContact(formData));
-  //   dispatch(fetchContacts());
-  //   // setContact(formData);
-  // };
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -77,9 +58,21 @@ export const ListItem = ({ id, name, number, handlerClick, handlerEdit }) => {
     }));
   };
 
+  const handleToggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const handleCheckboxStatus = selectedContactId => {
+    setContactIdsToDelete(
+      contactsIdsToDelete.includes(selectedContactId)
+        ? contactsIdsToDelete.filter(id => id !== selectedContactId)
+        : [...contactsIdsToDelete, selectedContactId]
+    );
+  };
+
   return (
     <>
-      <ListItemStyled isChecked={isChecked} ref={editInfoRef}>
+      <ListItemStyled ref={editInfoRef}>
         <div
           style={{
             display: 'flex',
@@ -91,8 +84,9 @@ export const ListItem = ({ id, name, number, handlerClick, handlerEdit }) => {
             <input
               id={id}
               type="checkbox"
-              checked={isChecked}
-              onChange={handleCheckboxChange}
+              name="contactToDelete"
+              checked={contactsIdsToDelete.includes(id)}
+              onChange={() => handleCheckboxStatus(id)}
             />
             <AvatarComponent name={name}></AvatarComponent>
             {/* <Avatar color={getRandomColor()} /> */}
@@ -105,7 +99,7 @@ export const ListItem = ({ id, name, number, handlerClick, handlerEdit }) => {
             <FaTrashAlt
               style={{
                 cursor: 'pointer',
-                margin: '0 35px',
+                margin: '0 15px',
               }}
               onClick={() => {
                 handlerClick(id);
@@ -133,19 +127,29 @@ export const ListItem = ({ id, name, number, handlerClick, handlerEdit }) => {
                 }}
               >
                 <InfoItem>
-                  <p>Email:</p> {''}
+                  <Span>
+                    <MdAlternateEmail />
+                    <p>Email:</p>
+                  </Span>
                 </InfoItem>
                 <InfoItem>
-                  <p>City:</p> {''}
+                  <Span>
+                    <MdMapsHomeWork />
+                    <p>City:</p>
+                  </Span>
                 </InfoItem>
                 <InfoItem>
-                  <p>Job:</p> {''}
+                  <Span>
+                    <MdOutlineWorkHistory />
+                    <p>Job:</p>
+                  </Span>
                 </InfoItem>
+
                 <InfoItem>
-                  <p>Position:</p> {''}
-                </InfoItem>
-                <InfoItem>
-                  <p>Category:</p> {''}
+                  <Span>
+                    <BiCategory />
+                    <p>Category:</p>
+                  </Span>
                 </InfoItem>
               </div>
               {/*  */}
@@ -181,7 +185,10 @@ export const ListItem = ({ id, name, number, handlerClick, handlerEdit }) => {
                     <label>Number</label>
                   </div>
                   <center>
-                    <button type="submit" style={{ color: 'tomato' }}>
+                    <button
+                      type="submit"
+                      style={{ color: 'tomato', fontSize: 18 }}
+                    >
                       Edit contact
                       <span></span>
                     </button>

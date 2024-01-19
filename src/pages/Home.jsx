@@ -1,22 +1,29 @@
+import styled from '@emotion/styled';
 import Img from '../components/PhoneImg/PhoneImg';
 import GoToAppLink from 'components/GoToAppLink/GoToAppLink';
 import TitleSecond from 'components/TitleSecond/TitleSecond';
 import HeroTitle from 'components/TitleHero/HeroTitle';
 
-const Home = () => {
-  const styles = {
-    position: 'relative',
-    color: 'white',
-    fontSize: 42,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingLeft: '30px',
-    paddingRight: '30px',
-    paddingTop: '160px',
-  };
+const HomeContainer = styled.section`
+  position: relative;
+  color: white;
+  font-size: 62;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 80px;
 
+  @media screen and (min-width: 1280px) {
+    width: 868px;
+    font-size: 82px;
+    padding-top: 160px;
+  }
+`;
+
+const Home = () => {
   return (
-    <div style={styles}>
+    <HomeContainer>
       <HeroTitle
         text={'ORGANIZE YOUR CONTACTS WITH THE PHONE BOOK APP'}
       ></HeroTitle>
@@ -25,7 +32,7 @@ const Home = () => {
       <TitleSecond text="EASY. SIMPLE. FREE." />
 
       <Img />
-    </div>
+    </HomeContainer>
   );
 };
 
