@@ -65,7 +65,7 @@ export const ContactList = () => {
 
   const handleDeleteSelected = () => {
     Confirm.show(
-      ' Confirm',
+      ' ',
       'Delete contact?',
       'Yes',
       'No',

@@ -24,8 +24,8 @@ const authSlice = createSlice({
     builder
       .addCase(API.register.pending, handlePending)
       .addCase(API.register.fulfilled, (state, action) => {
-        // state.isLoading = false;
-        // state.error = null;
+        state.isLoading = false;
+        state.error = null;
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
@@ -33,8 +33,8 @@ const authSlice = createSlice({
       .addCase(API.register.rejected, handleRejected)
       .addCase(API.login.pending, handlePending)
       .addCase(API.login.fulfilled, (state, action) => {
-        // state.isLoading = false;
-        // state.error = null;
+        state.isLoading = false;
+        state.error = null;
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
@@ -45,7 +45,9 @@ const authSlice = createSlice({
         state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
+        state.error = null;
       })
+      .addCase(API.logout.rejected, handleRejected)
       .addCase(API.current.pending, handlePending)
       .addCase(API.current.fulfilled, (state, action) => {
         state.user = { ...action.payload };
