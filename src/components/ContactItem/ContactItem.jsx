@@ -12,12 +12,15 @@ import css from './EditForm.module.css';
 
 import {
   AdditionalInfo,
+  Avatar,
   InfoItem,
   ListItemStyled,
   Name,
   Phone,
   Span,
 } from './ContactItem.styled';
+// import { getRandomColor } from 'helpers/random-color';
+// import { CiUser } from 'react-icons/ci';
 
 export const ListItem = ({
   id,

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import css from '../Pagination/Pagination.module.css';
 
-import { List, ListHeader } from './ContactList.styled';
+import { HeadText, List, ListHeader } from './ContactList.styled';
 import { ListItem } from 'components/ContactItem/ContactItem';
 
 import { FaTrashAlt } from 'react-icons/fa';
@@ -102,7 +102,7 @@ export const ContactList = () => {
             checked={isCheckedAll}
             onChange={handleAllCheckboxChange}
           />
-          <p style={{ marginRight: 35, marginLeft: 60 }}>Name</p>
+          <HeadText style={{ marginRight: 35, marginLeft: 60 }}>Name</HeadText>
           {isCheckedAll || contactsIdsToDelete.length > 0 ? (
             <span
               style={{
@@ -123,7 +123,7 @@ export const ContactList = () => {
             ''
           )}
 
-          <p style={{ marginRight: 150 }}> Pnone number</p>
+          <HeadText> Pnone number</HeadText>
         </ListHeader>
         {currentContacts.map(({ name, id, number }) => (
           <ListItem

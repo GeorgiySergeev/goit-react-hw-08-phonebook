@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import css from './ContactFormModal.module.css';
 import { IoCloseSharp } from 'react-icons/io5';
 
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contacts/contacts-operations';
 import { nanoid } from 'nanoid';
+
+import css from './ContactFormModal.module.css';
 
 const ContactFormModal = ({ closeModal }) => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const ContactFormModal = ({ closeModal }) => {
     const regex = /^\+38 \(\d{6}\)$/;
 
     if (!regex.test(number)) {
-      return 'Phone number should be in the format +38 (123456)';
+      return 'Phone number should be in the format +380(ХХ) ХХХ-ХХ-ХХ';
     }
 
     return '';
@@ -40,16 +41,19 @@ const ContactFormModal = ({ closeModal }) => {
   const onChange = e => {
     const { name, value } = e.target;
 
-    if (name === 'name') {
-      setErrors({ ...errors, name: validateName(value) });
-    } else if (name === 'number') {
-      setErrors({ ...errors, number: validateNumber(value) });
-    }
     setFormData(prevData => ({
       ...prevData,
       [name]: value,
       id: nanoid(),
     }));
+
+    if (name === 'name') {
+      setErrors({ ...errors, name: validateName(value) });
+    } else if (name === 'number') {
+      // Manually format the phone number to match the desired pattern
+      const formattedNumber = value.replace(/\D/g, '');
+      setErrors({ ...errors, number: validateNumber(formattedNumber) });
+    }
   };
 
   const onSubmit = e => {
@@ -98,7 +102,7 @@ const ContactFormModal = ({ closeModal }) => {
               value={formData.number}
               onChange={onChange}
             />
-            {errors.name && <span>{errors.number}</span>}
+            {errors.number && <span>{errors.number}</span>}
           </div>
         </div>
 

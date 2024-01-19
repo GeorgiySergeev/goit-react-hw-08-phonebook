@@ -26,6 +26,10 @@ export const ListItem = styled.li`
   gap: 25px;
 `;
 
+export const HeadText = styled.h2`
+  color: antiquewhite;
+`;
+
 export const ListHeader = styled.div`
   /* width: 100%; */
   font-size: 22px;
@@ -35,8 +39,8 @@ export const ListHeader = styled.div`
 
   border: 1px solid green;
   border-radius: 8px;
-  margin-bottom: 15px;
-  padding: 10px;
+  margin-bottom: 25px;
+  padding: 5px 80px 5px 10px;
 `;
 
 // export const Table = styled.table`
