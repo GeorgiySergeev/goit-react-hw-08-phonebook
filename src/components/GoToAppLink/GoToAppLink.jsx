@@ -9,7 +9,10 @@ const GoToAppLink = () => {
 
   return (
     <LinkContainer>
-      <Link to="/contacts" style={{ color: '#E05160', zIndex: 99 }}>
+      <Link
+        to="/contacts"
+        style={{ color: '#E05160', zIndex: 99, fontWeight: 700 }}
+      >
         {!isLoggedIn ? 'Let`s start' : 'My contacts'}
       </Link>
       <StyledArrow />
