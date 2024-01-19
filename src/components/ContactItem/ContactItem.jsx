@@ -12,7 +12,6 @@ import css from './EditForm.module.css';
 
 import {
   AdditionalInfo,
-  Avatar,
   InfoItem,
   ListItemStyled,
   Name,
