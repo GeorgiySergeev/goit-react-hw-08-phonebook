@@ -7,14 +7,16 @@ import Footer from 'components/Footer/Footer';
 
 const Layout = () => {
   return (
-    <MainContainer className="main">
-      <Header text={'PHONE'} span={'BOOK.app'}></Header>
+    <>
+      <MainContainer className="main">
+        <Header text={'PHONE'} span={'BOOK.app'}></Header>
 
-      <Suspense>
-        <Outlet></Outlet>
-      </Suspense>
+        <Suspense>
+          <Outlet></Outlet>
+        </Suspense>
+      </MainContainer>
       <Footer></Footer>
-    </MainContainer>
+    </>
   );
 };
 

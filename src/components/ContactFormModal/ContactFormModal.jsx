@@ -32,7 +32,7 @@ const ContactFormModal = ({ closeModal }) => {
     const regex = /^\+38 \(\d{6}\)$/;
 
     if (!regex.test(number)) {
-      return 'Phone number should be in the format +380(ХХ) ХХХ-ХХ-ХХ';
+      return 'Phone number format +380(ХХ) ХХХ-ХХ-ХХ';
     }
 
     return '';
@@ -88,6 +88,7 @@ const ContactFormModal = ({ closeModal }) => {
             name="name"
             value={formData.name}
             onChange={onChange}
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           />
           {errors.name && <span>{errors.name}</span>}
         </div>
@@ -101,6 +102,7 @@ const ContactFormModal = ({ closeModal }) => {
               name="number"
               value={formData.number}
               onChange={onChange}
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             />
             {errors.number && <span>{errors.number}</span>}
           </div>

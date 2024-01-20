@@ -1,5 +1,9 @@
 /* @import-normalize; */
 /* bring in normalize.css styles */
+:root {
+  --accsent-color: rgb(224, 81, 96);
+}
+
 html,
 body {
   height: 100%;

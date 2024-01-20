@@ -27,7 +27,7 @@ export const ListItem = styled.li`
 `;
 
 export const HeadText = styled.h2`
-  color: antiquewhite;
+  color: var(--accsent-color);
 `;
 
 export const ListHeader = styled.div`

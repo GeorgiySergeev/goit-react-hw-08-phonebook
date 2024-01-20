@@ -1,16 +1,26 @@
 import React from 'react';
 import { FooterContainer } from './Footer.styled';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/GoIT.png';
+import logoGoIt from '../../assets/GoIT.png';
+import logoGit from '../../assets/GitHub-logo-2.png';
 
 const Footer = () => {
   return (
     <FooterContainer>
-      <Link to="https://github.com/GeorgiySergeev" target="_blank">
-        Georgiy Sergeev.
+      <Link
+        to="https://github.com/GeorgiySergeev"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img src={logoGit} alt="logo-git" style={{ width: 75 }} />
       </Link>
-      <Link to="https://goit.global/ua/" target="_blank">
-        <img src={logo} alt="logo" style={{ width: 55 }} />
+      <p>Georgiy Sergeev.</p>
+      <Link
+        to="https://goit.global/ua/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img src={logoGoIt} alt="logo-goit" style={{ width: 55 }} />
       </Link>{' '}
       2024 FSON92
     </FooterContainer>
