@@ -21,7 +21,9 @@ export const ListItemStyled = styled.li`
   border: 1px solid rgb(216, 216, 216, 0.4);
   border-radius: 10px;
   padding: 5px 10px;
-  background-color: ${props => (props.isChecked ? '#555659' : ' #39526A')};
+  /* background-color: ${props =>
+    props.isChecked ? '#555659' : ' #39526A'}; */
+  background-color: ${props => (props.isExpanded ? '#555659' : ' #39526A')};
 `;
 
 export const Name = styled.p`
@@ -59,18 +61,4 @@ export const AdditionalInfo = styled.ul`
   border-top: 1px solid red;
   flex-direction: row-reverse;
   align-items: center;
-`;
-export const InfoItem = styled.li`
-  color: gray;
-  .div {
-    display: flex;
-  }
-`;
-
-export const EditLink = styled.p``;
-
-export const Span = styled.span`
-  display: flex;
-  align-items: center;
-  gap: 5px;
 `;

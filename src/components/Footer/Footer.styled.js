@@ -13,9 +13,10 @@ export const FooterContainer = styled.div`
   padding: 10px 0;
 
   background-color: transparent;
-
-  /* background: rgb(57, 82, 106, 0.5);
-  background: linear-gradient(0deg, #39526a 0%, #bebebe 80%);
-  background: -webkit-linear-gradient(0deg, #39526a 0%, #bebebe 80%);
-  background: -moz-linear-gradient(0deg, #39526a 0%, #bebebe 80%); */
+  /* background: linear-gradient(
+    90deg,
+    rgba(237, 237, 237, 1) 0%,
+    rgba(237, 237, 237, 1) 49%,
+    rgba(178, 203, 208, 1) 98%
+  ); */
 `;

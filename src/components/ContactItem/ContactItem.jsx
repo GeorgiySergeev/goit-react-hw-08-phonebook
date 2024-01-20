@@ -1,22 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { MdOutlineWorkHistory } from 'react-icons/md';
 import { FaTrashAlt } from 'react-icons/fa';
-import { MdAlternateEmail } from 'react-icons/md';
-import { MdMapsHomeWork } from 'react-icons/md';
-import { BiCategory } from 'react-icons/bi';
 import { FaUserEdit } from 'react-icons/fa';
 
+import ContactInfo from './AdditionalInfo/AdditionalInfo';
 import AvatarComponent from 'components/AvatarComponent/AvatarComponent';
 import css from './EditForm.module.css';
 
 import {
   AdditionalInfo,
-  InfoItem,
   ListItemStyled,
   Name,
   Phone,
-  Span,
 } from './ContactItem.styled';
 // import { getRandomColor } from 'helpers/random-color';
 // import { CiUser } from 'react-icons/ci';
@@ -31,6 +26,7 @@ export const ListItem = ({
   contactsIdsToDelete,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  // const [isChecked, setIsChecked] = useState(false);
   const [formData, setFormData] = useState({
     name,
     number,
@@ -74,7 +70,7 @@ export const ListItem = ({
 
   return (
     <>
-      <ListItemStyled ref={editInfoRef}>
+      <ListItemStyled ref={editInfoRef} isExpanded={isExpanded}>
         <div
           style={{
             display: 'flex',
@@ -119,42 +115,7 @@ export const ListItem = ({
         {isExpanded && (
           <>
             <AdditionalInfo>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 20,
-                  alignItems: 'start',
-                  paddingTop: 10,
-                }}
-              >
-                <InfoItem>
-                  <Span>
-                    <MdAlternateEmail />
-                    <p>Email:</p>
-                  </Span>
-                </InfoItem>
-                <InfoItem>
-                  <Span>
-                    <MdMapsHomeWork />
-                    <p>City:</p>
-                  </Span>
-                </InfoItem>
-                <InfoItem>
-                  <Span>
-                    <MdOutlineWorkHistory />
-                    <p>Job:</p>
-                  </Span>
-                </InfoItem>
-
-                <InfoItem>
-                  <Span>
-                    <BiCategory />
-                    <p>Category:</p>
-                  </Span>
-                </InfoItem>
-              </div>
-              {/*  */}
+              <ContactInfo />
 
               <div className={css['login-box']}>
                 <form

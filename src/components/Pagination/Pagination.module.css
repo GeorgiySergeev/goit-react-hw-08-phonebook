@@ -12,7 +12,7 @@
 .pagination a {
   display: block;
   padding: 10px;
-  color: #333;
+  color: var(--accsent-color);
   font-size: 20px;
 
   cursor: pointer;
