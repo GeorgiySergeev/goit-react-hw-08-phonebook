@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { IoCloseSharp } from 'react-icons/io5';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../../redux/contacts/contacts-operations';
 import { nanoid } from 'nanoid';
 
 import css from './ContactFormModal.module.css';
+import { selectContacts } from '../../redux/contacts/contacts-selectors';
 
 const ContactFormModal = ({ closeModal }) => {
   const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
 
   const [errors, setErrors] = useState({
     name: '',
@@ -59,7 +62,9 @@ const ContactFormModal = ({ closeModal }) => {
   const onSubmit = e => {
     e.preventDefault();
 
-    dispatch(addContact(formData));
+    contacts.some(element => element.name === formData.name)
+      ? Report.warning('This contact has already exists')
+      : dispatch(addContact(formData));
 
     reset();
     closeModal();

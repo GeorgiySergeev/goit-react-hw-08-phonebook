@@ -6,7 +6,7 @@ import { BiCategory } from 'react-icons/bi';
 import { MdOutlineWorkHistory } from 'react-icons/md';
 import TextField from './InfoInput/InfoInput';
 import NativeSelectDemo from './Select/Select';
-import { VscSaveAs } from 'react-icons/vsc';
+// import { VscSaveAs } from 'react-icons/vsc';
 
 const ContactInfo = () => {
   const [formData, setFormData] = useState({
@@ -24,7 +24,7 @@ const ContactInfo = () => {
     }));
   };
 
-  const saveInfo = () => {};
+  //   const saveInfo = () => {};
 
   return (
     <div
@@ -36,7 +36,7 @@ const ContactInfo = () => {
         paddingTop: 10,
       }}
     >
-      <VscSaveAs onClick={saveInfo} />
+      {/* <VscSaveAs onClick={saveInfo} /> */}
       <InfoItem>
         <Span>
           <MdAlternateEmail />
