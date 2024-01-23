@@ -14,7 +14,7 @@ const Footer = () => {
       >
         <img src={logoGit} alt="logo-git" style={{ width: 75 }} />
       </Link>
-      <p style={{ color: 'black' }}>Georgiy Sergeev.</p>
+      <p style={{ color: 'white' }}>Georgiy Sergeev.</p>
       <Link
         to="https://goit.global/ua/"
         target="_blank"
@@ -22,7 +22,7 @@ const Footer = () => {
       >
         <img src={logoGoIt} alt="logo-goit" style={{ width: 55 }} />
       </Link>{' '}
-      <p style={{ color: 'black' }}>2024 FSON92</p>
+      <p style={{ color: 'white' }}>2024 FSON92</p>
     </FooterContainer>
   );
 };
