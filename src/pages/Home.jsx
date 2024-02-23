@@ -27,6 +27,7 @@ const Home = () => {
       <HeroTitle
         text={'ORGANIZE YOUR CONTACTS WITH THE PHONE BOOK APP'}
       ></HeroTitle>
+
       <GoToAppLink />
 
       <TitleSecond text="EASY. SIMPLE. FREE." />
